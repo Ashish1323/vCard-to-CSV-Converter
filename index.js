@@ -4,8 +4,8 @@ const vCardParser = require('vcard-parser');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 // Specify the folder containing .vcf files
-const folderPath = '/Users/ashish/Documents/Contacts';
-const outputCsvPath = '/Users/ashish/Documents/output.csv';
+const folderPath = path.join(__dirname, 'Contacts');  // Folder containing .vcf files
+const outputCsvPath = path.join(__dirname, 'output.csv');  // Output CSV file path
 
 // Initialize the CSV writer with column headers
 const csvWriter = createCsvWriter({
