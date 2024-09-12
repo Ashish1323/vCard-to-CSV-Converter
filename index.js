@@ -56,12 +56,14 @@ const processVcfFiles = (folderPath) => {
 
           const fullNames = parsedData?.fn || [];
           const phoneNumbers = parsedData?.tel || [];
-          console.log(fullNames,phoneNumbers)
+          const uniquePhoneNumbers = phoneNumbers.filter((phone, index, self) => 
+            index === self.findIndex((p) => p.value === phone.value)
+          );
 
           // Iterate over both full names and phone numbers, assuming they correspond
           for (let i = 0; i < Math.max(fullNames.length, phoneNumbers.length); i++) {
             const fullName = fullNames[i]?.value || 'N/A';  // Get the full name at index i
-            const phoneNumber = phoneNumbers[i]?.value || 'N/A';  // Get the phone number at index i
+            const phoneNumber = uniquePhoneNumbers[i]?.value || 'N/A';  // Get the phone number at index i
             // Add the extracted data to the CSV data array
             dataForCsv.push({ fullName, phoneNumber });
           }
